@@ -1,0 +1,19 @@
+int main()
+//{
+//	int day = 0;
+//	printf("星期几：");
+//	scanf("%d",&day);
+//	switch (day)//应用（整形、字符、enum类型）
+//	{//要有大括号来包括整个switch内容
+//	case 1:printf("星期1\n"); break;//当1-5位重复的工作日的时候case：后面的内容可以在5后面编译一次就可以了。
+//	case 2:printf("星期2\n"); break;//case后面是常量表达式
+//	case 3:printf("星期3\n"); break;
+//	case 4:printf("星期4\n"); break;
+//	case 5:printf("星期5\n"); break;
+//	case 6:printf("星期6\n"); break;
+//	case 7:printf("星期日\n"); break;
+//	default:printf("输入错误\n"); break;//没有顺序规定，按习惯最后处理
+//
+//	}
+//	return 0;
+//}
