@@ -1,0 +1,22 @@
+int main()
+{
+	int ch = 0;
+	int ret = 0;
+	char password[20] = {0};
+	printf("请输入密码:>");
+		scanf("%s", password);//按回车时，被getchar获取，回车=\n,ASCII \n的值为10，所以后面执行else
+		while((ch = getchar()) !='\n')//解决办法:读取缓冲区的数据直到\n
+		{
+			;
+		}//空语句
+			printf("请确认支付(Y/N):>");
+		ret = getchar();
+		if (ret == 'Y')//字符要用单引号
+		{
+			printf("支付成功");
+		}
+		else
+			printf("支付失败");
+		
+	return 0;
+}
