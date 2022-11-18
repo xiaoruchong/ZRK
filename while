@@ -1,0 +1,14 @@
+int main()
+{
+	int i = 1;
+	while (i <= 10)
+	{
+		//if (5 == i)
+			//continue;//满足if条件为真，继续返回前面的循环判断语句，而本次循环continue后面的代码终止执行。
+			//break;//满足if条件为真，跳出循环；永久终止循环。
+		printf("%d ", i);
+		i++;
+
+	}
+	return 0;
+}
