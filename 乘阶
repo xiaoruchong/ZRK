@@ -1,0 +1,38 @@
+int main()
+{
+int i, n;
+double ret = 1;
+double sum = 0;
+//scanf("%d", &n);
+for (n = 1; n <= 3; n++)
+{
+ret = ret * n;//n的阶乘
+
+sum = ret + sum;//n阶乘的和
+}
+printf("%lf", sum);
+
+
+return 0;
+}
+//int main()
+//{
+// int i, n;
+// double ret = 1;
+// double sum = 0;
+// //scanf("%d", &n);
+// for(n=1;n<=3;n++)
+// {
+// ret = 1;//循环里面，ret要给一个初始化的值，防止ret会出现上次执行的缓存的值，使结果出错
+// for (i = 1; i <= n; i++)
+// {
+// ret = ret * i;//n的阶乘
+// }
+//
+// sum = ret + sum;//n阶乘的和
+// }
+// printf("%lf",sum);
+//
+//
+// return 0;
+//}
