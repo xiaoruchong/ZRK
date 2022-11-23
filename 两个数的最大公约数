@@ -1,0 +1,22 @@
+int main()
+{
+	int a, b,i;
+	int tmp = 0;
+	printf("请输入a&b 的值:>");
+	scanf("%d,%d", &a, &b);
+	if (a < b)
+	{
+		a = tmp;
+		a = b;
+		b = tmp;
+	}
+	for (i = b; i > 0; i--)
+	
+		if (a % i == 0 && b % i == 0)
+		{
+			printf("最大公约数为：%d\n", i);
+			break;//数组不止一个公约数，找到后第一个值为最大，必须用break，终止循环
+		}
+	
+	return 0;
+}
