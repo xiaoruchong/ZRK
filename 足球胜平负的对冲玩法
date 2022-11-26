@@ -1,0 +1,27 @@
+int main()
+{
+	int i = 0;
+	float w, e, l;
+	char char_com = '0';
+	while(char_com !='p')
+	{
+	    float win = 0.0;
+		float even = 0.0;
+		float lose = 0.0;
+		float prcp = 0.0;
+		float tla = 0.0;
+		printf("请输入胜平负赔率及本金：");
+		scanf("%f %f %f %f", &win, &even, &lose, &prcp);
+		w = prcp / win;
+		e = prcp / even;
+		l = prcp / lose;
+		tla = w + (e + l);
+		printf("买胜投注本金：%f\n", w);
+		printf("买平投注本金：%f\n", e);
+		printf("买负投注本金：%f\n", l);
+		printf("投注总金额：%f\n", tla);
+		printf("按任意键继续，按p键退出\n");
+		char_com = getchar();
+	}
+	return 0;
+}
