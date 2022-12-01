@@ -1,0 +1,26 @@
+int main()
+{
+	int i;
+	int e = 0;
+	int count = 0;
+	printf("请输入求素数的范围最大值：");
+	scanf("%d", &e);
+	for (i = 0; i <= e; i++)
+	{
+		int n = 2;
+		for (n = 2; n <= e; n++)
+			//for(n=2;n<=sprt(i);n++)用开平方法简化计算过程
+		{
+			if (i % n == 0)
+				break;
+		}
+		if (i == n)
+			//if(n>sqrt(i)) 引用库函数<math.h>
+		{
+			printf("%d ", i);
+			count++;
+		}	
+	}
+	printf("\ncount = %d", count);
+	return 0;
+}
