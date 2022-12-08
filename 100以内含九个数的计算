@@ -1,0 +1,17 @@
+int main()
+{
+	int a = 0,count = 0;
+	for (a = 1; a <= 100; a++)
+	{
+		if (a % 10 == 9)//余9的数
+		{
+			count++;
+		}     
+		if (a / 10 == 9)//商9的数
+		{
+			count++;
+		}
+	}
+	printf("\ncount = %d\n", count);
+	return 0;
+}
