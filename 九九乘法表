@@ -1,0 +1,15 @@
+int main()
+{
+	int i, j, result;
+	for (i = 1; i < 10; i++)
+	{
+		for (j = 1; j <= i; j++)
+		{
+			result = i * j;
+			printf("%d*%d=%-2d ", i, j, result);
+			//-2表示输出两个字符，-向左对齐，+号或者无表示向右对齐
+		}
+		printf("\n");
+	}
+	return 0;
+}
