@@ -1,0 +1,11 @@
+int main()
+{
+	char arr1[] ="hello";
+	char arr2[20] = "#########";
+	//arr2[]copy时把arr1[]里的结束\0也复制过来了，所以打印遇到\0结束打印
+	strcpy(arr2, arr1);
+	memset(arr1, '#', 2);//用#替换arr1里前两个字符
+	printf("%s\n", arr1);
+	printf("%s", arr2);
+	return 0;
+}
