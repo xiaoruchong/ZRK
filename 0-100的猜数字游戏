@@ -1,0 +1,66 @@
+#include<stdio.h>
+//#include<math.h>
+#include<stdlib.h>
+#include<time.h>
+
+void menu()
+{
+	printf("*********************************************\n");
+	printf("*********  《猜0-100的数字游戏》 ************\n");
+	printf("*********    1.play  0.exit      ************\n");
+	printf("*********************************************\n");
+}
+void game()
+{
+	int ret,guess = 0;
+	//需要用时间戳给srand时刻发生变化的值,设置随机数的起点。
+	
+	ret = rand()%100+1;//在调用rand函数时，先用srand去设置rand函数的随机生成器
+	// rand()函数生成的随机数是0-32767（RAND MAX）之间的整数。
+	//ret不能放进while循环里，否则一直在变，永远猜不到；
+	while (1)//恒为真，一直循环,直到break跳出循环；
+	{
+		printf("请猜数字:");
+		scanf("%d", &guess);
+			if (guess > ret)
+			{
+				printf("大了，请继续\n");
+			}
+			else if (guess < ret)
+			{
+				printf("小了，请继续\n");//逻辑不能搞反
+			}
+			else
+			{
+				printf("恭喜你，猜对了!\n");
+				break;
+			}
+	}
+}
+
+int main()
+{
+	srand((unsigned int)time(NULL));//时间戳只需要在主函数中设置一次就可以了
+	//unsigned int 强制转换成整型值，//NULL空指针，
+	//rand函数需要调用库函数<stdlid.h>,time函数需要调用<time.h>
+	int input = 0;
+	do
+	{
+		menu();
+		printf("请选择:");
+		scanf("%d", &input);
+		switch (input)
+		{
+		case 1:
+			game();
+			break;
+		case 0:
+			printf("退出游戏");
+			break;
+		default:
+			printf("输入有误，请重新输入：");
+				break;
+		}
+	} while (input);//0为假；非0为真，循环继续。
+	return 0;
+}
