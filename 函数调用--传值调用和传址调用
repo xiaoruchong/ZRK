@@ -1,0 +1,30 @@
+int get_max(int x, int y)//返回整型用int,x和y是形式参数。
+{
+	return (x > y) ? (x):(y);
+}
+//void swap1(int* x, int* y)
+void swap2(int &x,int &y)
+ {
+ int tmp = 0;
+ tmp = x;
+ x = y;
+ y = tmp;
+ }
+//交换不需要返回值，用void
+//{
+//	int tmp = 0;
+//	tmp = *x;
+//	*x = *y;
+//	*y = tmp;
+//}
+int main()
+{
+	int a = 10;//实际参数
+	int b = 20;//实际参数
+	int max = get_max(a, b);//传值调用，get-max不会影响a和b的值
+	printf("max = %d\n", max);
+	//swap1(&a, &b);//指针传递（传址调用）
+	swap2(a, b);//引用调用（传址调用）可以通过swap直接操作a和b
+	printf("a=%d b=%d\n", a, b);
+	return 0;
+}
