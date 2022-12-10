@@ -1,0 +1,25 @@
+int is_leap_year(int x)
+{
+	if ((x % 4 == 0 && x % 100 != 0) || (x % 400 == 0))
+	{
+		return 1;
+	}
+	else
+		return 0;
+
+}
+int main()
+{
+	int year = 0;
+	printf("请输入年份\n");
+	scanf("%d", &year);
+	if (is_leap_year(year) == 1)
+	{
+		printf("公元%d年: 是闰年",year);
+	}
+	else
+	{
+		printf("公园%d年: 不是闰年",year);
+	}
+	return 0;
+}
