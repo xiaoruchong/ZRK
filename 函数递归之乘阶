@@ -1,0 +1,17 @@
+int SUB(int x)
+{
+	if (x > 1)
+	{
+		return x *SUB(x - 1);
+	}
+	else
+		return 1;
+}
+int main()
+{
+	int i = 0;
+	scanf("%d", &i);
+	int j = SUB(i);
+	printf("%d! = %d",i,j);
+	return 0;
+}
