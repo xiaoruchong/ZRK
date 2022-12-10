@@ -1,0 +1,48 @@
+int is_prime(int x)
+{
+	int i = 0;
+	double y = sqrt(x);
+	if (x % 2 == 0)
+	{
+		return 0;
+	}
+	else
+	{
+		for (i = 2; i <= y; i++)
+		{
+			if (x % i == 0)
+			{
+				return 0;
+			}
+		}
+		return 1;
+	}
+	
+}
+int main()
+{
+	int a = 0;
+	int char_com = 0;
+	again:
+	printf("请输入一个整数:\n");
+	scanf("%d", &a);
+	if (is_prime(a) == 1)
+	{
+		printf("是素数\n");
+	}
+	else
+	{
+		printf("不是素数\n");
+	}
+	printf("按‘1’键继续，按‘2'键退出\n");
+	scanf("%d", &char_com);
+	switch (char_com)
+	{
+	case 1: goto again;
+	case 2:break;
+	default:
+		printf("输入错误，请重新输入：");
+
+	}
+	return 0;
+}
