@@ -1,0 +1,19 @@
+void add(int &p)
+//void add(int* p)
+{
+	p++;
+	//(*p)++;
+}
+
+int main()
+{
+	int num = 0;
+	add(num);//想要调用函数改变实参，用&p来接受实参的地址，否则只能传值；
+	//add(&num)传址需要用指针*p接受，从而达到改变实参的目的
+	printf("%d\n", num);
+	add(num);
+	printf("%d\n", num); 
+	add(num);
+	printf("%d\n", num);
+	return 0;
+}
