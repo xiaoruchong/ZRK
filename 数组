@@ -1,0 +1,49 @@
+int main()
+{
+	char arr[] = "abcdrf";
+	char arr1[] = "abc";//里面包括 a b c \0
+	char arr2[] = { 'a','b','c' };//里面包括 a b c
+	int arr3[] = { 0,1,2,3,4,5,6,7,8,9 };
+	for (int i = 0; i <= strlen(arr); i++)
+	{
+		printf("%c\n", arr[i]);
+	}
+	int e = strlen(arr);
+	while (e > 0)
+	{
+		("%c\n", arprintfr[e]);//倒序打印
+		e--;
+	}
+	int sz = sizeof(arr3) / sizeof(arr3[0]);
+	for (int n = 0; n < sz;n++)
+	{
+		printf("arr3[%d] = %p\n", n, &arr3[n]);
+		//数组在内存中是连续存放的，大小由数组的类型决定的，例：int 相隔4个字节
+	}
+	printf("%zd\n", sizeof(arr1));//4
+	printf("%zd\n", sizeof(arr2));//3
+	printf("%zd\n", strlen(arr1));//3
+	printf("%zd\n", strlen(arr2));//在计算arr2没有遇到 \0 所以返回值为随机数
+	printf("%zd\n", sizeof(arr));//计算的数组空间的大小，7，计算变量、数组、类型的大小，单位是字节
+	//操作符
+	printf("%zd\n", strlen(arr));//计算元素的个数，求字符串长度的，只能针对字符串6
+	//库函数 string.h  遇到\0 
+	// 
+	//二维数组
+
+	int arr4[3][4] = {0,1,2,3,4,5,6,7,8,9,10,11};//3为行，4为列，意思为存3行数组，每行数组俩面有4个元素，没设定初始化值，默认为0；
+	//行可以省略
+	for (int i = 0; i < 3; i++)
+	{
+		int j = 0;
+		for (j = 0; j < 4; j++)
+		{
+			printf("%d ", arr4[i][j]);
+			printf("arr4[%d][%d] = %p\n", i, j, &arr4[i][j]);
+			//数组在内存中是连续存放的，大小由数组的类型决定的,下标访问数组，都是从0开始的
+		}
+		printf("\n");
+	}
+
+	return 0;
+}
