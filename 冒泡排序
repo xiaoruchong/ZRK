@@ -1,0 +1,64 @@
+void bubble_sort(int arr[], int n)
+{
+	int i, j, tmp;
+	for (i = 0; i < n; i++)
+	{
+		int flag = 1;
+		for (j = 0; j < n - 1-i; j++)//n个元素，两两对比，
+			//只需要进行n-1次对比即可；一趟对比执行完后，
+			//最大值放在末尾，下一趟依次减少对比次数；
+			//就可以达到升序排列的目的
+		{
+			if (arr[j] > arr[j + 1])
+			{
+				tmp = arr[j];
+				arr[j] = arr[j + 1];//较小值往前传
+				arr[j + 1] = tmp;//较大值往后传
+				flag = 0;//完成交换说明数组不是有序数列；
+				//排列程序继续执行
+			}
+		}
+		if (flag == 1)//说明排序已经完成；
+		{
+			break;//跳出第一个for循环
+		}
+	}
+}
+
+int main()
+{
+	int i, j, arr[7], ret;// 数组里面\0占一个字符,所以为7
+	printf("请输入6个数字：\n");
+	for (i = 0; i < 6; i++)
+	{
+		scanf("%d", &arr[i]);
+	}
+	int sz = sizeof(arr) / sizeof(arr[0])-1;
+	bubble_sort(arr, sz);//数组调用函数，
+	//传的是第一个元素的指针即*arr，
+	//所以要在调用函数前计算好数组元素的个数
+	//for(i = 0;i < 6;i++)
+	//{
+	//	for (j = 0; j < 5 - i; j++)//数组为六个值，
+	//		//数组下标值最大为5，
+	//		//为保证下方j+1下标值最大为5，
+	//		//所以此时满足条件5-i；
+	//	{
+	//		if (arr[j] > arr[j + 1])
+	//		{
+	//			{
+	//				ret = arr[j];
+	//				arr[j] = arr[j + 1];
+	//				arr[j + 1] = ret;
+	//			}
+	//		}
+	//	}
+	//}
+	//冒泡数组排序
+	printf("这6个数字从小到大排序：\n");
+	for (i = 0; i < sz; i++)
+	{
+		printf("%d ", arr[i]);
+	}
+	return 0;
+}
