@@ -1,0 +1,17 @@
+int main()
+{
+	int a = 3;//a = 011二进制位（下同）
+	int b = 5;//b = 101
+	a = a ^ b;//a = 110 ^二进制按位异或，相同为0，反之为1
+	b = a ^ b;//b = 011
+	a = a ^ b;//a = 101完成交换；
+	printf("a = %d\nb = %d\n", a, b);
+	//a = a + b;//a=和，b是原来的b
+	//b = a - b;//b得到原来的a
+	//a = a - b;//a得到原来的b
+	////int 有最大值,2147483647
+	//INT_MAX;
+	//printf("a = %d\nb = %d\n", a, b);
+	//printf("%d\n", INT_MAX);
+	return 0;
+}
