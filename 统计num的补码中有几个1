@@ -1,0 +1,32 @@
+int main()
+{
+	int num = 0;
+	int count = 0;
+	scanf("%d", &num);
+	//统计num的补码中有几个1
+	/*while (num)
+	{
+		if (num % 2 == 1)
+			count++;
+		num = num / 2;
+	}*///num 为负  则无法计算
+	//32 bit
+	//000000000000000000000000000000011  3
+	//000000000000000000000000000000001  1
+	//按位与
+	//000000000000000000000000000000001  
+	/*int i = 0;
+	for (i = 0; i < 64; i++)
+	{
+		if (((num>>i )& 1) == 1)
+			count++;
+
+	}*/
+	while (num)
+	{
+		count++;
+		num = num & (num - 1);
+	}
+	printf("%d\n", count);
+	return 0;
+}
