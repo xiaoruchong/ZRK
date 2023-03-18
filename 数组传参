@@ -1,0 +1,21 @@
+void test1(int arr[])
+{
+	printf("%d\n", sizeof(arr));//8
+	//数组传参，传过来的是地址，用指针接收，指针的大小由系统决定
+	//64位  8个字节  32位 4 个字节
+}
+void test2(char ch[])
+{
+	printf("%d\n", sizeof(ch));//8
+	//数组传参，传过来的是地址，用指针接收，指针的大小由系统决定
+	//64位  8个字节  32位 4 个字节
+}
+int main()
+{
+	int arr[10] = { 0 };
+	char ch[10] = { 0 };
+	printf("%d\n", sizeof(arr));//--40 整个数组的大小
+	printf("%d\n", sizeof(ch));//--10
+	test1(arr);
+	test2(ch);
+	return 0;
