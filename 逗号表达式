@@ -1,0 +1,18 @@
+int main()
+{
+	int a,d = 1;
+	int b = 2;
+	int c = (a > b, a = b + 10, a, b = a + 1);
+	if (a = b + 1, c = a / 2, d > 0);
+	while (a = a + 1, a = a / 2, a > 0);
+	/*a = a + 1;
+	a = a / 2;
+	while (a > 0)
+	{
+		a = a + 1;
+		a = a / 2;
+		//重复执行,可以用上面while语句代替
+	}*/
+	//a>b不产生结果,从左向右执行，整个表达式的结果为最后一个表达式的结果
+	return 0;
+}
