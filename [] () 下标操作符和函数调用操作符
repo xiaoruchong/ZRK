@@ -1,0 +1,14 @@
+int get_max(int x, int y)
+{
+	return x > y ? x : y;
+}
+int main()
+{
+	int arr[10] = { 10 };
+	arr[4] = 10;//[]有两个操作数，arr  和 4
+	int a = 10;
+	int b = 20;
+	int max = get_max(a, b);
+	//()前的get_max 为函数名，()里面的操作数是传递函数的参数
+	return 0;
+}
