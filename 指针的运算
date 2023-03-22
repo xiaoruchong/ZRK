@@ -1,0 +1,58 @@
+int my_strlen(char* str)
+{
+	char* start = str;
+	char* end = str;
+	while (*end != '\0')
+	{
+		end++;
+	}
+	return end - start;//用指针的加减，计算元素的个数；
+}
+int main()
+{
+	char arr[] = "bit";
+	int len = my_strlen(arr);
+	printf("%d\n", len);
+	return 0;
+}
+int main()
+{
+	//int a = 10;
+	//int* pa = NULL;//当初始化不知道赋予什么值时，NULL（（void*）0）空指针,0强制转换为无类型的
+	//int* pa = &a;
+	//*pa = 20;
+	//pa = NULL;//当pa使用完后，不使用了，及时空间释放，置成空指针
+	//if (pa != NULL)//使用前。检查指针是否为空指针，有效性
+	//{
+
+	//}
+	//---指针运算
+	int arr[10] = { 1,2,3,4,5,6,7,8,9,10 };
+	&arr[9] - &arr[0];//指针减去指针，得到的时指针之间元素的个数
+	int i = 0;
+	int* p = arr;
+	int sz = sizeof(arr) / sizeof(arr[0]);
+	for (i = 0; i < sz; i++)
+	{
+		printf("%d ", *p);
+		p++;//指针+ - 整数
+	}
+	float valaues[5];
+	float* vp;
+	for (vp = &valaues[0]; vp < &valaues[5];)//指针的关系运算，地址可以比较大小
+	{
+		*vp++;
+	}
+	for (vp = &valaues[5]; vp > &valaues[0];)//指针的关系运算，地址可以比较大小
+	{
+		*--vp = 0;
+	}
+	//指针标准规定
+	//允许指向数组元素的指针与指向数组最后一个元素后面的那个内存位置
+	//的指针比较，但不允许与指向第一个元素之前的那个内存位置的指针进行比较
+	for (vp = &valaues[4]; vp >= &valaues[0];vp--)//指针的关系运算，地址可以比较大小
+	{
+		*vp = 0;
+	}//标准不保证它可行，要避免这样写
+	return 0;
+}
