@@ -1,0 +1,54 @@
+// struct 结构体关键字 stu 结构体标签 struct stu 结构体类型
+//struct stu //结构体必须使用struct语句结构体关键字
+//{
+//     char name[20];
+//     short age;
+//     char tele[12];
+//     char sex[5];
+//     //成员变量,标准变量定义
+//}s0,s2,s3;//结构体末尾，最后一个分号之前，可定义结构体变量
+//这里的结构体变量为全局变量
+// struct stu 是结构体声明，是一个语句，必须用“;”分号结尾
+//结构体成员可以是标量、数组、指针、其他结构体
+typedef struct stu //typedef 是给这个结构体类型重新命名为“Stu”
+{
+       char name[20];
+       short age;
+       char tele[12];
+       char sex[5];
+       //成员变量,标准变量定义
+}Stu;//这里是类型
+//struct t
+//{
+//     char ch[10];
+//     struct stu s;
+//     char* pc;
+//};
+void Printf(Stu* s7)//用结构体指针接收
+//指针接收不用开辟内存空间，节约计算时间
+{
+       printf("name:%s\n", s7->name);
+       printf("age:%d\n", s7->age);
+       printf("tele:%s\n", s7->tele);
+       printf("sex:%s\n", s7->sex);
+}
+int main()
+{
+       //char arr[] = "hello\n";
+       //struct stu s1 = {"张三",20,"13777777777","男"};
+       ////这里的结构体变量为局部变量，初始化用大括号
+       ////Stu s4 = {"李四",21,"1388888888","女"};
+       ////用typedef 重命名后，可直接使用
+       //struct t s5 = { "HEHE",{"ZHANGSAN",20,"1388888888","男"},
+       //     arr};
+       //struct t* pb = &s5;//指针取地址
+       ////结构体内的结构体初始化也要用大括号
+       //printf("%s\n", s5.ch);访问结构体成员
+       //printf("%s\n", s5.s.tele);
+       //printf("%s\n", pb->s.name);//指针指向成员
+       //printf("%s\n", pb->pc);//指向结构体的成员
+       Stu s6 = { "张三",20,"13777777777","男" };
+       Printf(&s6);//直接传参地址，传参数是需要压栈的，如果结构体参数过大，
+       //参数压栈的系统开销较大，导致性能下降，所以直接传地址会提升性能
+       return 0;
+}
