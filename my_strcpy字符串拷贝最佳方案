@@ -1,0 +1,25 @@
+char* my_strcpy(char* dest,const char* src)//(目标位置，源头)指针接收
+                         //const 常属性 不可修改
+{
+	char* ret = dest;
+	assert(dest != NULL);//断言
+	assert(src != NULL);//断言
+	//把src指向的字符串拷贝到dest指向的空间，包含"\0"
+	while (*dest++ = *src++)//'\0'的ASCII码值为0，当*dest='\0'时，循环停止
+	{
+		;//优化
+	}
+	return ret;//返回目标的地址，有返回类型参数，可以直接访问使用
+}
+
+int main()
+{
+	//strcopy--字符串拷贝
+	char arr1[] = "#########";
+	char arr2[] = "bittttt";
+	
+	
+	
+	printf("%s\n", my_strcpy(arr1, arr2));
+	return 0;
+}
