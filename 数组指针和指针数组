@@ -1,0 +1,105 @@
+//void test(int arr[])
+//{
+//	int sz = sizeof(arr) / sizeof(arr[0]);
+//	printf("%d\n", sz);//计算的是
+//	//地址除元素的大小的值 32位 ֵ值为1 64位 值为2
+//}
+//int main()
+//{
+//	int arr[10] = { 0 };
+//	test(arr);
+//	char ch = 'w';
+//	char* pc = &ch;
+//	char arr1[] = "abcdef";
+//	char* p = arr1;// arr1 表示的是首元素地址
+//	return 0;
+//}
+//int main()
+//{
+//	const char* p = "hello";//“hello\n”是一个常量字符串，
+//	//不可修改的，要用const来修饰
+//	printf("%s\n", p);
+//	return 0;
+//}
+//int main()
+//{
+//	char arr1[] = "abcdef";
+//	char arr2[] = "abcdef";
+//	const char* p1 = "abcdef";
+//	const char* p2 = "abcdef";
+//	if (arr1 == arr2)
+//		printf("hehe\n");
+//	else
+//		printf("haha\n");//两个数组存两个地址
+//	if (p1 == p2)
+//		printf("hehe\n");//相同的常量字符串会存同一个内存，节省空间
+//	                     //指针实际指向的是同一个内存
+//	else
+//		printf("haha\n");
+//
+//	return 0;
+//}
+//int main()
+//{
+//	int arr[10] = { 0 };//整型数组
+//	char ch[5] = { 0 };//字符数组
+//	int* parr[4];//存放整型指针的数组——指针数组 存放地址
+//	char* pch[5];//存放字符指针的数组——指针数组 存放地址
+//	return 0;
+//}
+//int main()
+//{
+//	int a = 10;
+//	int b = 20;
+//	int c = 30;
+//	int d = 40;
+//	int* arr[4] = { &a,&b,&c,&d };
+//	int i = 0;
+//	for (i = 0; i < 4; i++)
+//	{
+//		printf("%d\n", *(arr[i]));
+//		printf("%p\n", arr[i]);
+//	}
+//	return 0;
+//}
+//int main()
+//{
+//	int arr1[] = { 1,2,3,4,5 };
+//	int arr2[] = { 2,3,4,5,6 };
+//	int arr3[] = { 3,4,5,6,7 };
+//	int* parr[] = { arr1,arr2,arr3 };
+//	int i = 0;
+//	for (i = 0; i < 3; i++)
+//	{
+//		int j = 0;
+//		for (j = 0; j < 5; j++)
+//		{
+//			printf("%d ", *(parr[i] + j));
+//			//通过指针数组访问数组首元素地址，
+//			//+j访问数组元素，再解引用
+//		}
+//		printf("\n");
+//
+//	}
+//	return 0;
+//}
+// 
+//--数组指针
+int main()
+{
+	//int* p = NULL;//p是整型指针——指向整型的指针——存放整型的地址
+	//char* pc = NULL;//pc是字符指针——指向字符的指针——存放字符的地址
+	//数组指针——指向数组的指针 ——存放数组的地址
+	//int arr[10] = { 0 };
+	//arr--首元素地址
+	// &arr[0]--首元素地址
+	// &arr——数组的地址
+	//
+	int arr[10] = { 1,2,3,4,5,6,7,8,9,10 };
+	int(*p)[10] = &arr;//存放数组的地址，数组指针，[]优先于*，（）先结合*p
+	printf("%d\n", (*p)[0]);
+	//char* arr1[5];//指针数组
+	//char* (*p)[5] = &arr1;//数组指针
+	//*p是指针 [5]指针指向五个元素 p是指针变量的名字 p指向的元素类型是char*
+	return 0;
+}
