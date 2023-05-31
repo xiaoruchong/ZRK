@@ -1,0 +1,49 @@
+int cmp_int(const void* e1, const void* e2)
+{
+       return *(int*)e1 - *(int*)e2;//e1 e2 调用前需要类型转换
+}
+void swap(char* buf1, char* buf2, int width)
+{
+       int i = 0;
+       for (i = 0; i < width; i++)
+       {
+              int tmp = *buf1;
+              *buf1 = *buf2;
+              *buf2 = tmp;//交换了数组元素的第一个字符；
+              buf1++;
+              buf2++;//进行数组元素的下一个字符交换；
+       }
+}
+void bubble_sort(void* base, int sz, int width,int(*cmp)(const void*e1,const void*e2))
+{
+       int i = 0;
+       for (i = 0; i < sz-1; i++)
+       {
+              int j = 0;
+              for (j = 0; j < sz - 1 - i; j++)
+              {
+                     if (cmp((char*)base + j * width, (char*)base + (j + 1) * width) > 0)
+                           //用char*给base类型转换，加上j*width（j乘以每个元素的大小）
+                           //达到可以连续访问数组里面元素的目的，（j+1）*width就可以得到
+                           //下一个元素，这样两个元素就可以进行比较
+                           swap((char*)base + j * width, (char*)base + (j + 1) * width,width);
+                           //进行元素交换，也需要传值——每个元素的大小；char* 类型
+                           //交换需要逐个字符进行交换
+              }
+       }
+}
+void test4()
+{
+       int arr[10] = { 0,9,7,6,8,5,4,3,2,1 };
+       int sz = sizeof(arr) / sizeof(arr[0]);
+       bubble_sort(arr, sz, sizeof(arr[0]),cmp_int);
+}
+int main()
+{
+       
+       test4();
+       char a = 0;
+       void* p = &a;//void* 无类型指针 可以接收任意类型的地址
+       //不能进行解引用操作，不能进行+ - 操作；
+       return 0;
+}
