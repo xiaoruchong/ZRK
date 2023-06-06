@@ -1,0 +1,49 @@
+int main()
+{
+	int a[5] = { 1,2,3,4,5 };
+	int* ptr = (int*)(&a + 1);//&a+1 跳过整个数组后的地址 数组类型转换后存入*ptr
+	printf("%d\n", *(ptr - 1));//ptr-1 解引用获得的是a[5] 的值 
+
+	p = (struct test*)0x100000;
+	printf("struct大小=%d\n", sizeof(*p));//结构体大小是 24
+	printf("%p\n", p + 0x1);//p+1 跳过整个结构体大小 0x100018(十六进制)
+	printf("%p\n", (unsigned long)p + 0x1);//将0x100000 强制转换位long整型 +1 就是实际值+1
+	printf("%p\n", (unsigned int*)p + 0x1);//将p结构体类型强制转换成int*类型，+1 就是跳过四个字节
+
+	int* ptr1 = (int*)(&a + 1);//&a+1 跳过整个数组后得到的地址转换成int* 指针存放在 ptr1里
+	int* ptr2 = (int*)((int)a + 1);//a位首元素地址，转换成int类型一个十六进制的值 再+1
+	                               //转换成int* 指针存放入ptr2 此时+1 表示向后移动一个字节
+	printf("%x,%x\n", ptr1[-1], *ptr2);//ptr1[-1]=*(ptr1 - 1) 此时解引用访问的是a[4] 值为5
+	                                 //*ptr2 小端存储（01 00 00 00 为a[0]， 02 00 00 00 为a[1]）解引用
+	                                 //得到（00 00 00 02） 转换十六进制 0x 02000000
+
+	int a[3][2] = { (0,1),(2,3),(4,5) };//逗号表达式的结果为最后一个表达式的结果
+	int* p;
+	p = a[0];//a[0]为第一行首元素的地址
+	printf("%d\n", p[0]);
+
+	int aa[2][5] = { 1,2,3,4,5,6,7,8,9,0 };
+	int* ptr1 = (int*)(&aa + 1);//&aa+1 跳过整个数组后得到的地址转换成int* 指针存放在 ptr1里
+	int* ptr2 = (int*)(*(aa + 1));//*（aa+1）解引用得到第二行首元素 
+	printf("%d,%d\n", *(ptr1 - 1), *(ptr2 - 1));//*(ptr1-1)得到aa[1][4]=0 *(ptr2-1)得到aa[0][4]= 5
+
+	const char* a[] = { "work","at","alibaba" };//a[]里面元素是char* 类型
+	const char** pa = a;//用*pa 指针去接受数组a的首元素地址，元素类型是char*
+	pa++;//得到a[1]的地址
+	printf("%s\n", *pa);//解引用
+
+	const char* c[] = { "enter","new","point","first" };
+	const char** cp[] = { c + 3,c + 2,c + 1,c };
+	const char*** cpp = cp;
+
+	printf("%s\n", **++cpp);//++cpp得到cp[1]的地址 c+2解引用后得到c[2] 解引用打印‘point’
+	printf("%s\n", *-- * ++cpp+3);//第二次++cpp得到cp[2]的地址 解引用得到c[1]的地址
+	                              //——得到c[0] 解引用得到enter +3得到c[0]字符串的第四个字符 打印‘er’
+	printf("%s\n", *cpp[-2]+3);//此时cpp为cp[2]的地址 cpp[-2]== *（cpp-2）
+	                           //得到cp[0]的地址 再解引用得到c[3]字符串 +3得到c[3]字符串的‘st’打印
+	printf("%s\n", cpp[-1][-1] + 1);//此时cpp为cp[2] cpp[-1][-1]== *(*(cpp-1)-1)
+	                                //*(cpp-1)得到 cp[1]解引用后c[2]的地址 再-1得到
+	                                //c[1]的地址 解引用得到‘new’ +1 得到‘ew’打印
+
+	return 0;
+}
