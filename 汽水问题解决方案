@@ -1,0 +1,37 @@
+int main()
+{
+	//方案1
+	int pay = 0;
+	int sum = 0;
+	scanf("%d", &pay);
+	while (pay)
+	{
+		sum += pay;
+		pay /= 2;
+	}
+	sum = sum + 1;
+	printf("%d\n", sum);
+	//方案2
+	int money = 0;//多少钱
+	int total = 0;//喝的瓶数
+	int empty = 0;//空瓶数
+	scanf("%d", &money);
+	total = money;
+	if (total > 0)
+	{
+		printf("%d", 2 * total - 1);
+	}
+	else
+		printf("0");
+	//方案3
+	empty = money;
+
+	while (empty >= 2)
+	{
+		total += empty / 2;
+		empty = empty / 2 + empty % 2;
+	}
+
+	printf("%d", total);
+	return 0;
+}
