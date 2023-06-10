@@ -1,0 +1,55 @@
+void left_move1(char* arr)
+{
+	assert(arr);
+	int n = 0;
+	int i = 0;
+	int len = strlen(arr);
+	printf("请输入左旋转位数：");
+	scanf("%d", &n);
+	for (i = 0; i < n; i++)
+	{
+		char tmp = *arr;//拿出首元素
+		int k = 0;
+		for(k = 0; k < len - 1;k++)//len-1 防止arr[j+1]越界访问
+		{
+			arr[k] = arr[k+1];//完成其他元素前移
+		}
+		*(arr + len - 1) = tmp;//第一个元素放到最后
+	}
+
+}
+void reverse(char* left, char* right)//逆序
+{
+	assert(left != NULL);
+	assert(right != NULL);
+	while (left < right)
+	{
+		int tmp = *(left);
+		*(left) = *(right);
+		*(right) = tmp;
+		left++;
+		right--;
+	}
+}
+
+void left_move2(char* arr)
+{
+	assert(arr);
+	int len = strlen(arr);
+	int n = 0;
+	printf("请输入左旋转位数：");
+	scanf("%d", &n);
+	n = n % len;//防止左旋位数大于字符串，导致重复计算
+	reverse(arr,arr+n-1);//逆序左边n位
+	reverse(arr+n,arr+len-1);//逆序右边
+	reverse(arr,arr+len-1);//逆序整体
+
+}
+int main()
+{
+	char arr[] = "abcdef";
+	left_move1(arr);//字符串左旋转 方案一
+	left_move2(arr);//方案二
+	printf("%s\n", arr);
+	return 0;
+}
