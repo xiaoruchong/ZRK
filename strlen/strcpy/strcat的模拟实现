@@ -1,0 +1,82 @@
+char* my_strcat(char* dest, const char* src)
+{
+	assert(dest != NULL);//字符串要以‘\0’结束，目标空间要足够大，且可修改
+	assert(src != NULL);
+	char* ret = dest;
+	//1，找到目的字符串的\0;
+	while (*dest != '\0')
+	{
+		dest++;
+	}
+	//2，追加
+	while (*dest++ = *src++)
+	{
+		;
+	}
+	return ret;
+}
+int main()
+{
+	char arr1[30] = "hello";//目的空间足够大，要以“\0”结束,可修改
+	char arr2[] = "world";
+	//strcat(arr1, arr2);
+	my_strcat(arr1, arr2);
+	printf("%s\n", arr1);
+	return 0;
+}
+
+char* my_strcpy(char* dest, const char* src)
+{
+	assert(dest != NULL);//字符串要以‘\0’结束，目标空间要足够大，且可修改
+	assert(src != NULL);
+	char* ret = dest;
+	//拷贝src指向的字符串到dest指向的空间，包含\0,返回目的空间的起始位置
+	//while (*src != '\0')
+	//{
+	//	*dest = *src;
+	//	dest++;
+	//	src++;
+	//}
+	//*dest = *src;//"\0"
+	while (*dest++ = *src++)//精简写法
+	{
+		;
+	}
+	return ret;
+}
+int main()
+{
+	char arr1[] = "abcdefghi";
+	char arr2[] = "bit";
+	strcpy(arr1, arr2);
+	my_strcpy(arr1, arr2);
+	printf("%s\n", arr1);
+	return 0;
+}
+
+int my_strlen(const char* str)
+{
+	/*int count = 0;
+	assert(str != NULL);
+	while (*str != '\0')
+	{
+		count++;
+		str++;
+	}
+	return count;*/
+	//递归写法
+	if(*str !='\0')
+		return my_strlen(str + 1) + 1;
+	
+}
+int main()
+{
+	int len = strlen("abcdfe");
+	printf("%d\n", len);
+	int len1 = my_strlen("abcdef");
+	printf("%d\n", len1);
+	if (strlen("abc") - strlen("abcdef") > 0)
+		printf("hehe");
+	//size_t == unsigned int 
+	return 0;
+}
