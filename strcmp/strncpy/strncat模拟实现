@@ -1,0 +1,54 @@
+char* my_strncat(char* dest, const char* src, size_t count)
+{
+	char* ret = dest;
+	while (dest++);
+	dest--;
+	while (count--)
+		if (!(*dest++ = *src++))
+			return ret;
+	*dest = '\0';
+	return ret;
+}
+int main()
+{
+	char arr1[30] = "hello";
+	char arr2[] = "world";
+	strncat(arr1, arr2, 3);
+	my_strncat(arr1, arr2, 3);
+	return 0;
+}
+char* my_strncpy(char* dest, const char* src, size_t count)
+{
+	char* ret = dest;
+	while (count && (*dest++ = *src++))
+	{
+		count--;
+	}
+	if (count)
+	{
+		while (--count)
+		{
+			*dest++ = '\0';
+		}
+	}
+	return ret;
+}
+int main()
+{
+	char arr1[10] = "abcefsdd";
+	char arr2[] = "hello";
+	//strncpy(arr1, arr2, 4);
+	my_strncpy(arr1, arr2, 8);
+	return 0;
+
+}
+int my_strcmp(const char* str1, const char* str2)
+{
+	assert(str1 && str2);
+	while (*str1 == *str1)
+	{
+		if (*str1 == '\0')
+			return 0;
+		str1++;
+		str2++;
+	}
