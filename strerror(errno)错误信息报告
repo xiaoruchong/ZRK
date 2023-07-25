@@ -1,0 +1,32 @@
+int main()
+{
+	//错误码（编号）--- 错误信息
+	char* str = strerror(errno);
+	//errno 是一个全局的错误码变量 --库函数
+	//当C语言的库函数在执行过程中，发生了错误，就会把对应的错误码，赋值到errno中
+	FILE* pf = fopen("test.cpp", "r");
+	if (pf == NULL)
+	{
+		printf("%s\n", strerror(errno));
+	}
+	else
+	{
+		printf("打开成功\n");
+	}
+	printf("%s\n", str);
+	return 0;
+}
+int main()
+{
+	char arr1[] = "192.168.0.0";
+	const char* p = ".";//sep 分割符
+	char buf[1024] = { 0 };
+	strcpy(buf, arr1);
+	char* ret = NULL;
+	for(ret = strtok(buf,p);ret!=NULL;ret = strtok(NULL,p))
+	{
+		printf("%s\n", ret);
+	}
+		
+	return 0;
+}
