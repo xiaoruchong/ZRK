@@ -1,0 +1,115 @@
+//柔性数组
+//定义：结构体最后一个成员允许是未知大小的数组
+// 优点;在开辟空间时，连续开辟，便于释放空间，不会因多次开辟，导致释放空间出错
+//      开辟空间时，节省动态开辟次数，节省空间，提升内存空间利用率，减少内存碎片
+//      访问效率更高
+// 
+//
+
+struct S
+{
+	int n;
+	int* arr;//指针大小随系统 4/8 个字节
+
+};
+int main()
+{
+	struct S* ps = (struct S*)malloc(sizeof(struct S));
+	ps->arr = (int*)malloc(5 * sizeof(int));//给指针arr单独开辟一个空间
+	int i = 0;
+	for (i = 0; i < 5; i++)
+	{
+		ps->arr[i] = i;
+	}
+	for (i = 0; i < 5; i++)
+	{
+		printf("%d ", ps->arr[i]);
+	}
+	//调整大小
+	int* ptr = (int*)realloc(ps->arr, 10 * sizeof(int));
+	if (ptr != NULL)
+	{
+		ps->arr = ptr;
+	}
+	for (i = 5; i < 10; i++)
+	{
+		ps->arr[i] = i;
+	}
+	for (i = 0; i < 10; i++)
+	{
+		printf("%d ", ps->arr[i]);
+	}
+	//释放
+	free(ps->arr);//先释放指针内的指针指向的空间
+	ps->arr = NULL;
+	free(ps);//再释放指针
+	ps = NULL;
+	return 0;
+}
+
+struct s
+{
+	int n;//柔性数组成员前必须至少有一个其他成员
+	int arr[];//柔性数组成员，大小可以调整,计算sizeof时不算在内的，用malloc来分配其大小
+};
+int main()
+{
+	struct s* ps = (struct s*)malloc(sizeof(struct s) + 5 * sizeof(int));//24个字节的空间
+	//struct s 的大小为4个字节，剩余的20个字节分配给柔性数组成员，连续开辟的空间
+	ps->n = 100;
+	int i = 0;
+	for (i = 0; i < 5; i++)
+	{
+		ps->arr[i] = i;//0 1 2 3 4
+	}
+	struct s* ptr = (struct s*)realloc(ps, 44);
+	if (ptr != NULL)
+	{
+		ps = ptr;
+	}
+	for (i = 5; i < 10; i++)
+	{
+		ps->arr[i] = i;
+	}
+	for (i = 0; i < 10; i++)
+	{
+		printf("%d ", ps->arr[i]);
+	}
+	//释放
+	free(ps);
+	ps = NULL;
+
+	return 0;
+}
+void getmemory(char* p)
+void getmemory(char** p)
+{
+	*p = (char*)malloc(100);
+	//p = (char*)malloc(100);//没有free 形参p开辟的动态空间，且无法找到，导致内存泄漏
+}
+void test(void)
+{
+	char* str = NULL;
+	//getmemory(str);//此时传的是值，p不能改变str的内容
+	getmemory(&str);
+	strcpy(str, "hello world");//此时拷贝指向的是空指针，解引用NULL,拷贝失败,程序崩溃
+	printf(str);
+	free(str);
+	str = NULL;
+}
+char* getmemory(void)
+{
+	char p[] = "hello world";
+	return p;//返回栈空间地址，内容已销毁
+}
+void test(void)
+{
+	char* str = NULL;
+	str = getmemory();
+	printf(str);
+}
+int main()
+{
+	test();
+	return 0;
+}
