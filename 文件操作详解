@@ -1,0 +1,192 @@
+//struct _iobuf {
+//	<!-- -->
+//		char* _ptr; //文件输入的下一个位置
+//	int _cnt; //当前缓冲区的相对位置
+//	char* _base; //指基础位置(应该是文件的其始位置)
+//	int _flag; //文件标志
+//	int _file; //文件的有效性验证
+//	int _charbuf; //检查缓冲区状况,如果无缓冲区则不读取
+//	int _bufsiz; //文件的大小
+//	char* _tmpfname;//临时文件名
+//};
+//typedef struct _iobuf FILE;
+
+int main()
+{
+	//FILE *pf 创建一个文件指针pf 指向该文件 通过pf来操作维护文件
+	int a = 10000;
+	//FILE* fopen(const char* filename, const char* mode);
+	//打开后会返回一个FILE* 的指针  打开失败返回一个空指针
+	//filename 文件名  mode 打开文件的方式
+	// 'r'  只读 输入数据打开已有文本文件 文件不在 出错 
+	//‘w’ 只写 输出数据创建新文件覆盖原文件 文件不在 创建一个新文件
+	//‘a’ 追加  文本文件尾添加数据      文件不在 出错
+	//‘rb’只读 输入数据打开二进制文件   文件不在 出错 
+	//‘wb’只写 输出数据打开二进制文件   文件不在 创建一个新文件
+	//‘ab’追加 二进制文件尾添加数据     文件不在 出错 
+	//‘r+’读写 打开文本文件             文件不在 出错
+	//‘w+’读写 创建文本文件             文件不在 创建一个新文件
+	//‘a+’读写 打开文件，在文件尾读写   文件不在 创建一个新文件
+	//‘rb+’读写 读写二进制文件          文件不在 出错
+	//‘wb+’读写 读写二进制文件          文件不在 创建一个新文件
+	//‘ab+’读写 二进制文件尾读写        文件不在 创建一个新文件
+	// 
+	// 绝对路径写法
+    // FILE* pf = fopen("H:\\vs\\projet5\\test.txt", "wb");
+	// 
+	// ..上一级文件路径
+	// . 当前路径
+	//相对路径写法（当前程序所在路径）
+	FILE* pf = fopen("test.txt", "wb");//当test文件不存在的时候会创建一个这样的文件
+	//wb 以二进制形式写这个文件
+	if (pf == NULL)
+	{
+		printf("%s\n", strerror(errno));
+		return 0;
+	}
+	printf("%c", fgetc(pf));
+	printf("%c", fgetc(pf));
+	printf("%c", fgetc(pf));
+	printf("%c", fgetc(pf));
+
+	//fputs("abcd", pf);
+	//fwrite(&a, 4, 1, pf);//以二进制的形式写入a，写4个字节，写一个这样的数据，放在pf指针里面
+	//int fclose(FILE * stream); steam 文件指针
+	fclose(pf);
+	pf = NULL;
+	return 0;
+}
+
+//程序默认
+//键盘——标准输入设备-stdin FILE*类型
+//屏幕——标准输出设备-stdout FILE*类型
+//stderr FILE*
+//scanf/printf  是针对标准输入流/标准输出流的格式化输入/输出语句
+//fscanf/fprintf  是针对所有输入流/所有输出流的格式化输入/输出语句
+//sscanf/sprintf  把字符串中读取（输入）格式化的数据/把格式化数据（输出）存储到字符串
+//
+
+
+struct S
+{
+	int n;
+	float score;
+	char arr[10];
+};
+int main()
+{
+	//打开文件
+	FILE* pf = fopen("test.txt", "r");
+	//r 文件为输入源 读出文件内容 输入到局部变量指向的空间
+	//w 文件为输出目的地 写入数据 存放到pf指向的文件里
+	if (pf == NULL)
+	{
+		printf("%s\n", strerror(errno));//打开错误原因
+		perror("hehe");//直接打印出错误信息，hehe是私人定制个性报错
+		return 0;
+	}
+	//写入文件
+	// fgetc  字符输入流（所有）int fgetc ( FILE * stream );//stream 流（文件指针）
+	//                          文件是否读取结束，判断返回值是否为EOF（-1）
+	// fputc  字符输出流（所有）int fputc ( int character, FILE * stream );
+	//                                     //character 要输入的字符 stream 流（文件指针）
+	//                          
+	// fgets  文本行输入流（所有）char * fgets ( char * str, int num, FILE * stream );
+	//                                     //str接收输入流的字符串  num接收字符串的个数
+	//                          文件是否读取结束，判断返回值是否为NULL 
+	// fputs  文本行输出流（所有）int fputs ( const char * str, FILE * stream );
+	//                            //str 为字符串 不可更改   
+	// fscanf 格式化（有格式）输入流（所有）int fscanf ( FILE * stream, const char * format, ... );
+	//                          stream 流（文件指针） format 文件格式（%s %c...）
+	// // scanf 标准格式化输入（键盘）int scanf ( const char * format, ... );
+	//                             format 文件格式（%s %c...）
+	// fprintf 格式化（有格式）输出流（所有）int fprintf ( FILE * stream, const char * format, ... );
+	//                          stream 流（文件指针） format 文件格式（%s %c...）              
+	// 
+	//  //printf 标准格式(屏幕)输出流（stdout）     int printf ( const char * format, ... );
+	//                            format 文件格式（%s %c...）后面是内容    
+	// fread  二进制输入流（文件）size_t fread ( void * ptr, size_t size, size_t count, FILE * stream );
+	//                                ptr 要被写入的变量指针 size 元素的大小 单位为追加
+	//                                 count 要被写入的变量最大数量
+	//                                 steam 流（源文件）
+	//                          文件是否读取结束，判断返回值是小于count
+	// fwrite 二进制输出流（文件）size_t fwrite ( const void * ptr, size_t size, size_t count, FILE * stream );
+	//                                 ptr 要被写入有变量内容的指针 size 元素的大小 单位为追加
+	//                                 count 要被写入有变量内容的最大数量
+	//                                 steam 流（源文件）
+	// fseek 文件随机读写 文件
+	// 根据文件指针的位置和偏移量来定位文件指针
+	//  int fseek ( FILE * stream, long int offset, int origin );
+	//              stream 文件指针   offset偏移量（单位是字节）
+	//              origin 文件指针的当前位置
+	//                 (SEEK_CUR 当前位置
+	//                  SEEK_END 末尾位置 往前读是负的
+	//                  SEEK_SET 起始位置)
+	// 
+	// ftell 返回文件指针相对于起始位置的偏移量 long int ftell ( FILE * stream );
+	// 
+	// rewind 让文件指针的位置回到起始位置 void rewind ( FILE * stream );
+	// 
+	// feof  //EOF(-1) -end of file 文件结束标志 int feof ( FILE * stream );
+	//      不能用其返回值来判断文件是否结束
+	//      而是文件读取结束时，判断是读取失败还是遇到文件末尾而结束 
+	//
+	
+	// 字符
+	int ch = fgetc(pf);//fgetc 所有输入流 输入源头可以是文件内容或键盘输入
+	printf("%c\n", ch);
+	fputc(ch, stdout);//fputc 所有输出流 输出目的地可以是屏幕或文件
+	
+	//文本
+	char buf[1024] = { 0 };
+	fgets(buf, 1024, pf);
+	printf("%s", buf);
+	 //gets（buf）;buf 标准输入读取（键盘）
+	//puts（buf）;buf 标准输出到屏幕
+	fgets(buf, 1024, pf);
+	printf("%s", buf);
+	fputs("adcdef\n", pf);//换行根据需要
+	fputs("adcdef", pf);
+
+	//格式化（有格式的）
+	struct S a = { 100,3.14f,"bit" };
+	fprintf(pf, "%d %f %s", a.n, a.score, a.arr);
+	struct S b = { 0 };
+	fscanf(pf, "%d %f %s", &(b.n), &(b.score), &(b.arr));//b为被输入变量
+	printf("%d %f %s", b.n, b.score, b.arr);
+
+	//字符串形式
+	char buf[1024] = { 0 };
+	sprintf(buf, "%d %f %s", a.n, a.score, a.arr);//把a里的数据以字符串的形式放入buf
+	printf("%s", buf);
+	sscanf(buf, "%d %f %s", &(b.n), &(b.score), &(b.arr));//把buf里的数据以字符串的形式放入b
+	printf("%d %f %s", b.n, b.score, b.arr);
+
+	//二进制
+	fwrite(&a, sizeof(struct S), 1, pf);//把a的结构体内容（struct S大小）写1个写入pf指向的文件里面
+	fread(&b, sizeof(struct S), 1, pf);
+	printf("%d %f %s\n", b.n, b.score, b.arr);
+
+	//操作文件指针位置
+	fseek(pf, 2, SEEK_CUR);//从pf的起始位置向后偏移两个字节开始读
+	int a = fgetc(pf);
+	int pos = ftell(pf);//计算文件指针的偏移量
+	printf("%c %d\n",a,pos);//重置文件指针到起始位置
+	rewind(pf);
+
+	//文件结束标志
+	int ch = fgetc(pf);
+	printf("%d\n", ch);//-1  文件结束时放了一个EOF(-1)
+	if (ferror(pf))//如果报错信息返回非0，则读取失败结束
+	{
+		puts("error when reading");
+	}
+	else if (feof(pf))//是否是文件尾结束的，是则读取成功
+		puts("end of file reached successfully");//遇到文件结束标志 结束
+
+	//关闭文件
+	fclose(pf);
+	pf = NULL;
+
+	return 0;
+}
